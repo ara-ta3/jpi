@@ -1,0 +1,6 @@
+#! /bin/sh
+
+file=${1:-"./credentials/sample"}
+. $file
+./bin/hubot --adapter slack
+

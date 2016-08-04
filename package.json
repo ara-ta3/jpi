@@ -1,0 +1,17 @@
+{
+  "name": "jeweIpet",
+  "version": "0.0.0",
+  "private": true,
+  "author": "tarata43@yahoo.co.jp",
+  "description": "A simple helpful robot for your Company",
+  "dependencies": {
+    "hubot": "^2.19.0",
+    "hubot-diagnostics": "0.0.1",
+    "hubot-google-images": "^0.2.6",
+    "hubot-help": "^0.2.0",
+    "hubot-slack": "^4.0.0"
+  },
+  "engines": {
+    "node": "6.2.x"
+  }
+}
