@@ -1,6 +1,8 @@
 // Description:
 //   #timeline 用のscript
-//   参加しているチャンネルへの投稿が全て#timelineに投稿される
+//   参加しているpublicチャンネルへの投稿が全て#timelineに投稿される
+// Commands:
+//   hubot join all - 存在する全てのpublicチャンネルに参加する
 //
 
 "use strict"
@@ -11,13 +13,11 @@ const SlackTextMessage = hubotSlack.SlackTextMessage;
 const webSlackToken    = process.env.WEB_SLACK_TOKEN;
 const timelineChannel  = process.env.TIMELINECHANNEL || "timeline";
 const blackList        = [timelineChannel];
-const linkNames        = initLinkNames();
-const SlackAPI         = require('slackbotapi');
+const linkNames        = initLinkNames(process.env.LINK_NAMES);
+const SlackAPI      = require('slackbotapi');
+const slack         = initSlackApi(webSlackToken);
 
 function initSlackApi(token) {
-    if ( token === undefined ) {
-        return new Error(`WEB_SLACK_TOKEN cannot be empty! value: undefined`);
-    }
     try {
         return new SlackAPI({
             'token': token,
@@ -29,8 +29,7 @@ function initSlackApi(token) {
     }
 };
 
-function initLinkNames() {
-    const linkNames = process.env.LINK_NAMES;
+function initLinkNames(linkNames) {
     if (linkNames !== "0" && linkNames !== "1") {
         return 0;
     };
@@ -56,6 +55,7 @@ function reloadUserImages(robot, userId, callback) {
     if (robot.brain.data.userImages[userId] != "") {
         return callback();
     }
+    // TODO using slack api
     const options = {
         url: `https://slack.com/api/users.list?token=${webSlackToken}&pretty=1`,
             timeout: 2000,
@@ -73,23 +73,10 @@ function reloadUserImages(robot, userId, callback) {
     });
 }
 
-function isValid(response) {
-    return response.message &&
-        response.message.text &&
-        response.envelope &&
-        response.envelope.room &&
-        response.message.rawMessage &&
-        response.message.rawMessage.channel;
-}
-
 module.exports = (robot => {
     robot.hear(/(.+)/, res => {
-        console.log(res);
-        if ( !isValid(res) ) {
-            return;
-        }
-        // channelが消えてた
-        const channelId = res.envelope.room;
+        const channelId   = res.message.rawMessage.channel
+        const channel     = res.envelope.room;
         if (!isPublic(channelId)) {
             return;
         }
@@ -99,8 +86,44 @@ module.exports = (robot => {
         reloadUserImages(robot, userId, () => {
             const userImage   = robot.brain.data.userImages[userId]
             const encoded     = encodeURIComponent(message);
+            // TODO using slack api
             const req = res.http(`https://slack.com/api/chat.postMessage?token=${webSlackToken}&channel=%23${timelineChannel}&text=${encoded}&username=${userName}&link_names=${linkNames}&pretty=1&icon_url=${userImage}`).get();
-            req((err, res, body) => err && robot.logger.error(err));
+                req((err, res, body) => err && robot.logger.error(err));
         });
     });
+
+
+    robot.respond(/join all/i, res => {
+        if (slack instanceof Error) {
+            robot.logger.error(slack);
+            return res.send("Something ocuured to slack api client!");
+        }
+
+        const bot = slack.getUser(robot.name);
+        slack.reqAPI("channels.list",{
+            exclude_archived: 1
+        }, (listResponse) => {
+            if(!listResponse.ok) {
+                robot.logger.error(`something ocuured ${listResponse}`);
+                return;
+            }
+            listResponse.channels
+            .filter((ch) => (ch.id.substring(0, 1) === 'C') )
+            .forEach((ch) => {
+                slack.reqAPI("channels.invite", {
+                    channel: ch.id,
+                    user: bot.id
+                }, (inviteResponse) => {
+                    if( inviteResponse.ok ) {
+                        res.send(`joined <#${ch.id}|${ch.name}>`)
+                    } else {
+                        if (inviteResponse.error !== 'already_in_channel' ) {
+                            robot.logger.error(`failed to join to ${ch.name}`);
+                            robot.logger.error(inviteResponse);
+                        };
+                    }
+                });
+            });
+        });
+    })
 });
