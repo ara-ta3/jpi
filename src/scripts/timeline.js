@@ -96,7 +96,7 @@ class TimelineRepository {
     }
 
     getExcludedList() {
-        return this.brain.get(HUBOT_TIMELINE);
+        return this.brain.get(HUBOT_TIMELINE) || [];
     }
 }
 
