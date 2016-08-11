@@ -3,6 +3,8 @@
 //   参加しているpublicチャンネルへの投稿が全て#timelineに投稿される
 // Commands:
 //   hubot join all - 存在する全てのpublicチャンネルに参加する
+//   hubot timeline exclude {channel name} - #timelineに通知するチャンネルから除外する
+//   hubot timeline include {channel name} - #timelineに通知するチャンネルに含める(除外していなければ通知される)
 //
 
 "use strict"
@@ -16,6 +18,7 @@ const blackList        = [timelineChannel];
 const linkNames        = initLinkNames(process.env.LINK_NAMES);
 const SlackAPI      = require('slackbotapi');
 const slack         = initSlackApi(webSlackToken);
+const HUBOT_TIMELINE= "TIMELINE_CHANNEL_EXCLUDED"
 
 function initSlackApi(token) {
     try {
@@ -73,11 +76,42 @@ function reloadUserImages(robot, userId, callback) {
     });
 }
 
+class TimelineRepository {
+    constructor(brain) {
+        this.brain = brain;
+    }
+
+    exclude(channel) {
+        const current = this.brain.get(HUBOT_TIMELINE) || [];
+        const next = current.concat([channel]);
+        this.brain.set(HUBOT_TIMELINE, next);
+        return next;
+    }
+
+    include(channel) {
+        const current = this.brain.get(HUBOT_TIMELINE) || [];
+        const next = current.filter((ch) => ch !== channel);
+        this.brain.set(HUBOT_TIMELINE, next);
+        return next;
+    }
+
+    getExcludedList() {
+        return this.brain.get(HUBOT_TIMELINE);
+    }
+}
+
 module.exports = (robot => {
+    const timelineRepository = new TimelineRepository(robot.brain);
+
     robot.hear(/(.+)/, res => {
         const channelId   = res.message.rawMessage.channel
         const channel     = res.envelope.room;
         if (!isPublic(channelId)) {
+            return;
+        }
+
+        const blackList = timelineRepository.getExcludedList();
+        if ( blackList.indexOf(channel) !== -1 ) {
             return;
         }
         const userId      = res.message.user.id;
@@ -92,6 +126,48 @@ module.exports = (robot => {
         });
     });
 
+    robot.respond(/timeline exclude (.+)/, res => {
+        const target = res.match[1].replace(/\#/, "");
+        slack.reqAPI("channels.list", {
+            exclude_archived: 1
+        }, (listResponse) => {
+            if(!listResponse.ok) {
+                robot.logger.error(`something ocuured ${listResponse}`);
+                return;
+            }
+            if (listResponse.channels.map((ch) => ch.name).indexOf(target) === -1) {
+                return res.send(`channel ${target} は見つからないぱか`);
+            }
+            timelineRepository.exclude(target);
+            res.send(`channel ${target} は #timeline に通知されないぱか`);
+        });
+    });
+
+    robot.respond(/timeline include (.+)/, res => {
+        const target = res.match[1].replace(/\#/, "");
+        slack.reqAPI("channels.list", {
+            exclude_archived: 1
+        }, (listResponse) => {
+            if(!listResponse.ok) {
+                robot.logger.error(`something ocuured ${listResponse}`);
+                return;
+            }
+            if (listResponse.channels.map((ch) => ch.name).indexOf(target) === -1) {
+                return res.send(`channel ${target} は見つからないぱか`);
+            }
+            timelineRepository.include(target);
+            res.send(`channel ${target} は #timeline に通知されるぱか`);
+        });
+    });
+
+    robot.respond(/timeline status/, res => {
+        const blackListTargets = timelineRepository.getExcludedList();
+        if (blackListTargets.length === 0) {
+            return res.send(`今は全てのpublibチャンネルが #timeline に通知されるぱか`)
+        }
+        const channels = blackListTargets.join(",")
+        res.send(`今 #timeline に通知されないのは ${channels} のチャンネルぱか`)
+    });
 
     robot.respond(/join all/i, res => {
         if (slack instanceof Error) {
