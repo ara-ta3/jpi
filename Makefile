@@ -1,7 +1,7 @@
 credential=./credentials/development
 
 start: 
-	source $(credential);./bin/hubot --adapter slack
+	./bin/hubot-slack $(credential)
 
 start-local:
 	source $(credential);./bin/hubot
