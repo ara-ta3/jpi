@@ -3,5 +3,6 @@
   "hubot-help",
   "hubot-google-images",
   "hubot-moji",
-  "hubot-nullpo"
+  "hubot-nullpo",
+  "hubot-redis-brain"
 ]
