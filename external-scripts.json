@@ -4,5 +4,6 @@
   "hubot-google-images",
   "hubot-moji",
   "hubot-nullpo",
-  "hubot-redis-brain"
+  "hubot-redis-brain",
+  "hubot-youtube"
 ]
