@@ -1,3 +1,4 @@
+NPM=$(shell which npm)
 HEROKU=$(shell which heroku)
 credential=./credentials/development
 env=./.env
