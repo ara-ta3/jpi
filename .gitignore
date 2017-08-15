@@ -3,3 +3,4 @@ node_modules
 .hubot_history
 credentials/development
 *.swp
+.env
