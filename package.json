@@ -20,7 +20,8 @@
     "slackbotapi": "^1.3.9"
   },
   "scripts": {
-    "start": "hubot"
+    "start": "hubot",
+    "test": "hubot --config-check"
   },
   "engines": {
     "node": "6.2.x"
