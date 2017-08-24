@@ -1,14 +1,20 @@
 NPM=$(shell which npm)
+DOCKER_COMPOSE=$(shell which docker-compose)
 HEROKU=$(shell which heroku)
 credential=./credentials/development
 env=./.env
 heroku_app_name=
 
-start/local: $(env)
-	set -o allexport && source $< && \
-		$(NPM) run start -- --name $(name) --adapter slack
+start/docker: $(env)
+	set -o allexport && source $< && $(DOCKER_COMPOSE) up
 
-start/local/shell:
+start/local: $(env)
+	set -o allexport && source $< && $(MAKE) start
+
+start:
+	$(NPM) run start -- --name $(name) --adapter slack
+
+start/shell:
 	$(NPM) run start -- --name $(name)
 
 deploy/heroku:
