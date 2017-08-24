@@ -1,0 +1,16 @@
+version: "3.2"
+
+services:
+    hubot:
+        image: node:6.11
+        container_name: hubot-jpi
+        volumes:
+            - $PWD:/root/hubot
+        environment:
+            - HUBOT_SLACK_TOKEN=$HUBOT_SLACK_TOKEN
+            - HUBOT_GOOGLE_CSE_ID=$HUBOT_GOOGLE_CSE_ID
+            - HUBOT_GOOGLE_CSE_KEY=$HUBOT_GOOGLE_CSE_KEY
+            - HUBOT_NULLPO_RICH_STYLE="true"
+            - TZ='Asia/Tokyo'
+            - HUBOT_SLACK_EXIT_ON_DISCONNECT=1
+        command: make -C /root/hubot start
