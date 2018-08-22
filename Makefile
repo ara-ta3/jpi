@@ -1,7 +1,6 @@
-NPM=$(shell which npm)
-DOCKER_COMPOSE=$(shell which docker-compose)
-HEROKU=$(shell which heroku)
-credential=./credentials/development
+NPM=npm
+DOCKER_COMPOSE=docker-compose
+HEROKU=heroku
 env=./.env
 heroku_app_name=
 
@@ -26,6 +25,10 @@ deploy/heroku/env:
 deploy/heroku/setup: $(HEROKU)
 	$(HEROKU) git:remote --app $(heroku_app_name)
 	$(HEROKU) plugins:install heroku-config
+
+heroku/create/scheduler: $(HEROKU)
+	$(HEROKU) addons:create scheduler:standard --app $(heroku_app_name)
+	$(HEROKU) addons:open scheduler --app $(heroku_app_name)
 
 $(HEROKU):
 	which heroku || echo 'please install heroku cli https://devcenter.heroku.com/articles/heroku-cli'
