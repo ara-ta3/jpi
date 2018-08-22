@@ -13,7 +13,7 @@
     "hubot-heroku-keepalive": "^1.0.3",
     "hubot-moji": "^1.0.6",
     "hubot-nullpo": "0.0.7",
-    "hubot-redis-brain": "0.0.3",
+    "hubot-redis-brain": "1.0.0",
     "hubot-slack": "^3.0.2 < 4.0.0",
     "hubot-vg-8th-floors": "1.0.4",
     "hubot-youtube": "^1.1.1",
