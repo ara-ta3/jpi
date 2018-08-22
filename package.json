@@ -9,7 +9,7 @@
     "hubot": "^2.19.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-google-images": "^0.2.6",
-    "hubot-help": "^0.2.0",
+    "hubot-help": "1.0.1",
     "hubot-heroku-keepalive": "^1.0.3",
     "hubot-moji": "^1.0.6",
     "hubot-nullpo": "0.0.7",
