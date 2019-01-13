@@ -1,4 +1,4 @@
-NPM=npm
+YARN=yarn
 DOCKER_COMPOSE=docker-compose
 HEROKU=heroku
 env=./.env
@@ -11,10 +11,10 @@ start/local: $(env)
 	set -o allexport && source $< && $(MAKE) start
 
 start:
-	$(NPM) run start -- --name $(name) --adapter slack
+	$(YARN) run start -- --name $(name) --adapter slack
 
 start/shell:
-	$(NPM) run start -- --name $(name)
+	$(YARN) run start -- --name $(name)
 
 deploy/heroku:
 	git push heroku master
