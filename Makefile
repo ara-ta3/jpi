@@ -4,17 +4,20 @@ HEROKU=heroku
 env=./.env
 heroku_app_name=
 
-start/docker: $(env)
+start/docker: $(env) compile
 	set -o allexport && source $< && $(DOCKER_COMPOSE) up
 
-start/local: $(env)
+start/local: $(env) compile
 	set -o allexport && source $< && $(MAKE) start
 
-start:
+start: compile
 	$(YARN) run start -- --name $(name) --adapter slack
 
-start/shell:
+start/shell: compile
 	$(YARN) run start -- --name $(name)
+
+compile:
+	$(YARN) tsc
 
 deploy/heroku:
 	git push heroku master
