@@ -1,9 +1,9 @@
 // Description:
-// //   
-// //
-// // Commands:
-// //   hubot 突然の {text} - 突然
-// //
+//
+//
+// Commands:
+//   hubot 突然の {text} - 突然
+//
 
 "use strict"
 const eastasianwidth = require('eastasianwidth');

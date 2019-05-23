@@ -3,7 +3,9 @@
 // Notes:
 //   Image
 // Commands:
-//   jpi - ...
+//   jpi - hubot imageの略
+//   hubot 鳥
+//   hubot ksk - ksk
 
 import * as hubot from "hubot";
 
