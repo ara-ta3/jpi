@@ -22,6 +22,9 @@ start/shell: compile
 compile:
 	$(YARN) tsc
 
+test:
+	$(YARN) test
+
 deploy/heroku:
 	git push heroku master
 
