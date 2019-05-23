@@ -4,3 +4,6 @@ node_modules
 credentials/development
 *.swp
 .env
+
+src/scripts/*js
+!src/scripts/totsuzen.js

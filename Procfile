@@ -1,1 +1,1 @@
-web: yarn run start --name jewelpet --adapter slack
+web: yarn tsc && yarn run start --name jewelpet --adapter slack

@@ -1,6 +1,8 @@
 a bot
 ---
 
+[![Build Status](https://travis-ci.com/ara-ta3/jpi.svg?branch=master)](https://travis-ci.com/ara-ta3/jpi)
+
 [![CircleCI](https://circleci.com/gh/ara-ta3/jpi/tree/master.svg?style=svg)](https://circleci.com/gh/ara-ta3/jpi/tree/master)
 
 # Deployment
