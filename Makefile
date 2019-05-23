@@ -4,6 +4,9 @@ HEROKU=heroku
 env=./.env
 heroku_app_name=
 
+install:
+	$(YARN) install
+
 start/docker: $(env) compile
 	set -o allexport && source $< && $(DOCKER_COMPOSE) up
 
