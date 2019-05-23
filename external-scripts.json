@@ -6,6 +6,5 @@
   "hubot-nullpo",
   "hubot-redis-brain",
   "hubot-youtube",
-  "hubot-heroku-keepalive",
-  "hubot-vg-8th-floors"
+  "hubot-heroku-keepalive"
 ]

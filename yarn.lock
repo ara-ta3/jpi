@@ -548,13 +548,6 @@ hubot-slack@4.6.0:
     bluebird "^3.5.1"
     lodash "^4.17.10"
 
-hubot-vg-8th-floors@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/hubot-vg-8th-floors/-/hubot-vg-8th-floors-1.0.4.tgz#04da6795f11c91523fb0f44c18ca556ba739ae24"
-  integrity sha512-Vd3b1YuNEVNg2rl8WP71pIds04rtbAwEUmjkQmnJtFAajmxuz+1AbMnfGuwJXjXFpYmZFyw/I0+eY4MeSXT21Q==
-  dependencies:
-    node-vg-8th-floors "^1.0"
-
 hubot-youtube@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/hubot-youtube/-/hubot-youtube-1.1.1.tgz#00878550838603255cd9aed51b183d31e34eb9b5"
@@ -713,11 +706,6 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
   integrity sha1-KzJxhOiZIQEXeyhWP7XnECrNDKk=
-
-node-vg-8th-floors@^1.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/node-vg-8th-floors/-/node-vg-8th-floors-1.0.1.tgz#3101c230b6622acd6746ea8245b3eaecb59196a3"
-  integrity sha1-MQHCMLZiKs1nRuqCRbPq7LWRlqM=
 
 oauth-sign@~0.9.0:
   version "0.9.0"
