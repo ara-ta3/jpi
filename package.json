@@ -6,7 +6,7 @@
   "description": "A simple helpful robot for your team",
   "dependencies": {
     "@types/hubot": "^2.19.5",
-    "@types/node": "^12.6.8",
+    "@types/node": "^12.6.9",
     "eastasianwidth": "0.2.0",
     "hubot": "3.3.2",
     "hubot-diagnostics": "1.0.0",
