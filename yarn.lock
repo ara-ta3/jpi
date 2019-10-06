@@ -505,58 +505,58 @@ https-proxy-agent@^2.2.0:
     agent-base "^4.3.0"
     debug "^3.1.0"
 
-hubot-diagnostics@1.0.0:
+hubot-diagnostics@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hubot-diagnostics/-/hubot-diagnostics-1.0.0.tgz#3a20de525901b83924b523b1244dcb726a8def69"
   integrity sha512-4kuR04lULoDDra/Z7B/rgMQMZW531Ve5hwhd8xNOKAl8e1cb5bZNqVpGFYF174eYcN54+RZuWQFHsntjvczyag==
 
-hubot-google-images@0.2.7:
+hubot-google-images@^0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/hubot-google-images/-/hubot-google-images-0.2.7.tgz#a8a1f9094d76830bf1931770888fab0dc0c11a4d"
   integrity sha1-qKH5CU12gwvxkxdwiI+rDcDBGk0=
 
-hubot-help@1.0.1:
+hubot-help@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hubot-help/-/hubot-help-1.0.1.tgz#0a678e551d67c4317e222ff294b9583b8322fce7"
   integrity sha512-1gL7ywROwQG6Grom68Bhi8O7YHn/qEkg3tGgap+tFejZGxVnFyJ/LcStBScW/zUj4yf0GlDaExR/vsaTjzBRsA==
 
-hubot-heroku-keepalive@1.0.3:
+hubot-heroku-keepalive@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/hubot-heroku-keepalive/-/hubot-heroku-keepalive-1.0.3.tgz#2950e28095ee4a6ace2b76f90e2a91ba91e6813c"
   integrity sha1-KVDigJXuSmrOK3b5DiqRupHmgTw=
 
-hubot-moji@1.0.6:
+hubot-moji@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/hubot-moji/-/hubot-moji-1.0.6.tgz#732e7d4a3b02664d12003cbfde835e8ceb78da08"
   integrity sha1-cy59SjsCZk0SADy/3oNejOt42gg=
 
-hubot-nullpo@0.0.7:
+hubot-nullpo@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/hubot-nullpo/-/hubot-nullpo-0.0.7.tgz#f8b77fdb1af52c6a423bd6770c9273d64dca842c"
   integrity sha1-+Ld/2xr1LGpCO9Z3DJJz1k3KhCw=
 
-hubot-redis-brain@1.0.0:
+hubot-redis-brain@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hubot-redis-brain/-/hubot-redis-brain-1.0.0.tgz#4626171525c2681852b285a621cc0443620fa0f1"
   integrity sha512-F3udeIfYZ+49ezeWKQgcI41PblsyRnHvAWrqjJV/HGApPCxX1P0cPiNna3B/ml6V5EOOZLsVeelukwtxDhh09A==
   dependencies:
     redis "^2.7.1"
 
-hubot-slack@4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/hubot-slack/-/hubot-slack-4.6.0.tgz#c016cc1b6cf76a35d613acb98382d14bafdfd7ad"
-  integrity sha512-eYnOmn76kMOQzjPKKM6/woanhUG7EwhgviH34MNWkf2EhlkkouKSe0wTkIt4n9OPbvuDf+531PO+XeKXMs4nrA==
+hubot-slack@^4.7.1:
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/hubot-slack/-/hubot-slack-4.7.1.tgz#76cb6bec0d48d3b6718b8be1735edebc8c420a3b"
+  integrity sha512-ieQdGv0XgdhAWjIvoY3UPi05AKV3d6XZYClX/xWGfGmK5tLFX3ZPLjJyJ6dKIXWXke7/kE47HqSACZskrt0Mcg==
   dependencies:
     "@slack/client" "3.16.1-sec.2"
     bluebird "^3.5.1"
     lodash "^4.17.10"
 
-hubot-youtube@1.1.1:
+hubot-youtube@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/hubot-youtube/-/hubot-youtube-1.1.1.tgz#00878550838603255cd9aed51b183d31e34eb9b5"
   integrity sha512-fCP5b1OFHvhlLf/C1IL/e2EB8/dIw4A7ihO9IScObb1PsN0uF6/8+qGgxUqbWtIAiWwR5KqNoymwk/IAjwmErw==
 
-hubot@3.3.2:
+hubot@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hubot/-/hubot-3.3.2.tgz#6ad13db19082cbe57ee3f9cc1c2c856d15cba223"
   integrity sha512-+8h/s+t5GirjuDW5K1QjTGBGzOU8ksEi51HeLdFghYOWj40x6ndhAU3C6SRPk/7yHj6luVPuVi/Y8s0P+lqM9Q==
@@ -924,7 +924,7 @@ setprototypeof@1.1.1:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.1.1.tgz#7e95acb24aa92f5885e0abef5ba131330d4ae683"
   integrity sha512-JvdAWfbXeIGaZ9cILp38HntZSFSo3mWg6xGcJJsd+d4aRMOqauag1C63dJfDw7OaMYwEbHMOxEZ1lqVRYP2OAw==
 
-slackbotapi@1.3.9:
+slackbotapi@^1.3.9:
   version "1.3.9"
   resolved "https://registry.yarnpkg.com/slackbotapi/-/slackbotapi-1.3.9.tgz#5318e0b67e4de75810e84dace7ad3125e618312f"
   integrity sha1-Uxjgtn5N51gQ6E2s560xJeYYMS8=
